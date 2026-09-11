@@ -1,0 +1,458 @@
+<!DOCTYPE html><html class="h-full bg-white" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Laboratorios Externos &amp; Simuladores - Vista Wireframe Estructural</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Modal transitions */
+    #labModal {
+      transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+    }
+    #labModal.hidden-modal {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      display: none;
+    }
+    /* Custom scrollbar inside modal body */
+    .modal-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-scroll::-webkit-scrollbar-track {
+      background: #ffffff;
+      border-left: 1px solid #000000;
+    }
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: #000000;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black antialiased selection:bg-black selection:text-white">
+<!-- Main container Wireframe -->
+<main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-10">
+<!-- Barra superior de navegación -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-4 border-b-2 border-black">
+<a class="inline-flex items-center gap-2 px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white font-bold text-xs uppercase tracking-wider transition-colors" href="index-lab-externos.html">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span class="">Volver a Programas</span>
+</a>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white text-xs font-mono font-bold tracking-tight">
+<span class="w-2.5 h-2.5 rounded-full bg-black"></span>
+<span class="">[PLATAFORMAS EXTERNAS CERTIFICADAS • ACCESO REMOTO]</span>
+</div>
+</div>
+<!-- Encabezado de la vista -->
+<div class="text-center max-w-3xl mx-auto mb-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 border-2 border-black bg-white text-black text-xs font-mono font-bold tracking-wider uppercase mb-4">
+<span class="material-symbols-outlined text-sm">public</span>
+<span class="">Plataformas &amp; Simuladores en la Nube</span>
+</div>
+<h1 class="text-3xl md:text-5xl font-black text-black tracking-tight uppercase leading-tight mb-4" id="heroTitle">
+      Laboratorios Externos &amp; Simuladores
+    </h1>
+<div class="hidden mb-4" id="programaActivoBadge">
+<span class="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-black text-white text-xs font-mono font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">school</span>
+        Programa: <span id="programaActivoNombre"></span>
+</span>
+<a class="ml-2 inline-flex items-center gap-1 px-3 py-1.5 border-2 border-black bg-white text-black hover:bg-black hover:text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors" href="lab-externos-catalogo.html">
+        Ver todos los programas
+      </a>
+</div>
+<p class="text-black text-sm md:text-base max-w-2xl mx-auto leading-relaxed border-t border-b border-black py-3 font-medium" id="heroDescription">
+      Explora las herramientas computacionales, bancos remotos y simuladores internacionales operados bajo convenio institucional por aliados académicos como <span id="heroOrigins">…</span>. Selecciona cualquier laboratorio para ver su ficha y plataforma de origen.
+    </p>
+</div>
+<!-- Barra de Filtro de Categorías (generada dinámicamente desde General-labs.json) -->
+<div class="mb-10 flex flex-wrap items-center justify-center gap-2" id="categoryFilterBar">
+<span class="text-xs font-mono font-bold uppercase text-black py-2">Cargando categorías…</span>
+</div>
+<!-- Grilla de Laboratorios (generada dinámicamente desde General-labs.json) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="labsGrid">
+<p class="col-span-full text-center text-xs font-mono font-bold uppercase text-black py-10">Cargando laboratorios…</p>
+</div>
+<!-- Pie de página Wireframe -->
+<div class="mt-12 text-center text-xs font-mono font-bold uppercase tracking-wider text-black border-t-2 border-black pt-6">
+<p class="">Plataformas y simuladores de alcance internacional en convenio • Universidad INCCA de Colombia 2025</p>
+</div>
+</main>
+<!-- MODAL DETALLADO DE LABORATORIO (WIREFRAME MONOCROMO PURO) -->
+<!-- CRITICAL: Starts CLOSED with 'hidden-modal' -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-black/60 hidden-modal" id="labModal">
+<!-- Modal Card Wireframe -->
+<div class="relative w-full max-w-2xl bg-white border-2 border-black overflow-hidden flex flex-col max-h-[92vh] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" id="modalCard">
+<!-- Modal Top Header / Showcase Area -->
+<div class="relative w-full bg-white border-b-2 border-black p-4 shrink-0">
+<div class="flex items-start justify-between gap-4">
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-2 font-mono text-[11px] font-bold">
+<span class="px-2 py-0.5 border border-black bg-black text-white uppercase" id="modalCategoryBadge">Física &amp; Electrónica</span>
+<span class="px-2 py-0.5 border border-black bg-white text-black uppercase" id="modalLocationText">PhET • Univ. de Colorado</span>
+</div>
+<h2 class="text-xl sm:text-2xl font-black text-black uppercase tracking-tight" id="modalTitle">Simulador de Circuitos &amp; Electromagnetismo PhET</h2>
+</div>
+<!-- Botón de Cerrar Wireframe -->
+<button aria-label="Cerrar modal" class="p-1.5 border-2 border-black bg-white hover:bg-black hover:text-white text-black transition-colors" onclick="closeLabModal()">
+<span class="material-symbols-outlined text-xl block leading-none">close</span>
+</button>
+</div>
+<!-- Esquema visual del modal: imagen real (solo PhET) o esquema de categoría -->
+<div class="mt-4 border-2 border-dashed border-black p-4 text-center bg-white" id="modalWireframeBox"></div>
+</div>
+<!-- Modal Content Body -->
+<div class="p-6 space-y-6 overflow-y-auto modal-scroll bg-white">
+<!-- Descripción -->
+<div>
+<h4 class="text-xs font-mono font-bold uppercase tracking-wider text-black mb-2 flex items-center gap-1.5 pb-1 border-b border-black">
+<span class="material-symbols-outlined text-sm">info</span>
+          Descripción
+        </h4>
+<p class="text-black text-sm leading-relaxed" id="modalDescription"></p>
+</div>
+<!-- Materias a las que aplica -->
+<div>
+<h4 class="text-xs font-mono font-bold uppercase tracking-wider text-black mb-2 flex items-center gap-1.5 pb-1 border-b border-black">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+          Materias
+        </h4>
+<div class="flex flex-wrap gap-2" id="modalMateriasList"></div>
+</div>
+<!-- Ficha de Datos Rápida -->
+<div class="grid grid-cols-3 gap-2 border-2 border-black p-3 text-center bg-white">
+<div class="border-r border-black pr-2">
+<div class="text-[10px] font-mono font-bold text-black uppercase">Modalidad</div>
+<div class="text-xs font-bold text-black uppercase mt-1" id="modalModalidad">—</div>
+</div>
+<div class="border-r border-black px-2">
+<div class="text-[10px] font-mono font-bold text-black uppercase">Costo</div>
+<div class="text-xs font-bold text-black uppercase mt-1" id="modalCosto">—</div>
+</div>
+<div class="pl-2">
+<div class="text-[10px] font-mono font-bold text-black uppercase">Transversal</div>
+<div class="text-xs font-bold text-black uppercase mt-1" id="modalTransversal">—</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer Actions -->
+<div class="p-4 border-t-2 border-black shrink-0 bg-white">
+<a class="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-black bg-white text-black hover:bg-black hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors" href="#" id="modalResourceLink" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+          Abrir Recurso Original
+        </a>
+</div>
+</div>
+</div>
+<script>
+  // Datos reales cargados desde Datos/General-labs.json (sin datos inventados)
+  let labsData = [];
+
+  // Ícono Material Symbols representativo por categoría real del JSON
+  const ICONOS_CATEGORIA = {
+    'Conceptos de Matemáticas': 'calculate',
+    'Aplicaciones de Matemáticas': 'functions',
+    'Movimiento': 'speed',
+    'Electricidad, Imanes y Circuitos': 'bolt',
+    'Química General': 'science',
+    'Ingeniería Química': 'precision_manufacturing',
+    'Química Cuántica': 'scatter_plot',
+    'Calor y Termoeléctrica': 'thermostat',
+    'Luz y Radiación': 'wb_sunny',
+    'Programación y Algoritmos': 'code',
+    'Sonido y Ondas': 'graphic_eq',
+    'Trabajo, Energía y Potencia': 'power',
+    'Biología': 'biotech',
+    'Fenómenos Cuánticos': 'blur_on',
+    'Tierra y Espacio': 'public'
+  };
+  const ICONO_DEFAULT = 'science';
+
+  function slugify(str) {
+    return String(str)
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // Esquema visual: imagen real del recurso (solo laboratorios de PhET, vía campo "imagen" del JSON)
+  // o esquema de categoría (dashed) cuando no hay imagen. Si la imagen falla al cargar,
+  // se reemplaza automáticamente por el esquema de categoría.
+  function construirEsquema(imagen, icono, categoria) {
+    const catEsc = escapeHtml((categoria || '').toUpperCase());
+    if (!imagen) {
+      return `<div class="w-full h-full border-2 border-dashed border-black flex flex-col items-center justify-center gap-2 p-3 bg-white">
+<span class="material-symbols-outlined text-4xl text-black">${icono}</span>
+<span class="font-mono text-xs font-bold uppercase tracking-wider text-black text-center">[ ${catEsc} ]</span>
+</div>`;
+    }
+    return `<img src="${escapeHtml(imagen)}" alt="${catEsc}" loading="lazy" class="w-full h-full object-contain bg-white" data-fallback-icon="${icono}" data-fallback-cat="${catEsc}">`;
+  }
+
+  // Si una imagen real no carga, la sustituye por el esquema de categoría (dashed)
+  function activarFallbackImagenes(root) {
+    root.querySelectorAll('img[data-fallback-icon]').forEach(img => {
+      img.addEventListener('error', function () {
+        const div = document.createElement('div');
+        div.className = 'w-full h-full border-2 border-dashed border-black flex flex-col items-center justify-center gap-2 p-3 bg-white';
+        div.innerHTML = `<span class="material-symbols-outlined text-4xl text-black">${img.dataset.fallbackIcon}</span><span class="font-mono text-xs font-bold uppercase tracking-wider text-black text-center">[ ${img.dataset.fallbackCat} ]</span>`;
+        img.replaceWith(div);
+      }, { once: true });
+    });
+  }
+
+  // Construye la barra de categorías reales con conteos reales
+  function construirBarraCategorias(labs) {
+    const conteo = new Map();
+    labs.forEach(l => {
+      const cat = (l['Categoría'] || '').trim();
+      if (!cat) return;
+      conteo.set(cat, (conteo.get(cat) || 0) + 1);
+    });
+    const categoriasOrdenadas = [...conteo.entries()].sort((a, b) => b[1] - a[1]);
+
+    let html = `<button class="category-btn px-4 py-2 border-2 border-black text-xs font-mono font-bold uppercase transition-colors active bg-black text-white" onclick="filterCategory('all', this)">
+      Todos los Laboratorios <span class="ml-1.5 px-1.5 py-0.2 border border-current">${labs.length}</span>
+    </button>`;
+
+    categoriasOrdenadas.forEach(([cat, count]) => {
+      const key = slugify(cat);
+      html += `<button class="category-btn px-4 py-2 border-2 border-black bg-white text-black hover:bg-black hover:text-white text-xs font-mono font-bold uppercase transition-colors" onclick="filterCategory('${key}', this)">
+      ${escapeHtml(cat)} <span class="ml-1.5 px-1.5 py-0.2 border border-current">${count}</span>
+    </button>`;
+    });
+
+    document.getElementById('categoryFilterBar').innerHTML = html;
+  }
+
+  // Construye una tarjeta de laboratorio real
+  function construirTarjetaLab(lab, index) {
+    const categoria = (lab['Categoría'] || '').trim();
+    const origen = (lab['Origen / Plataforma'] || '').trim();
+    const aplicaA = (lab['Aplica a'] || '').trim();
+    const nombre = (lab['Nombre del Laboratorio'] || '').trim();
+    const descripcion = (lab['Descripción '] || '').trim();
+    const icono = ICONOS_CATEGORIA[categoria] || ICONO_DEFAULT;
+    const catKey = slugify(categoria);
+    const imagen = (lab['imagen'] || '').trim();
+
+    return `
+<div class="lab-card group cursor-pointer bg-white border-2 border-black flex flex-col justify-between hover:bg-neutral-50 transition-colors" data-category="${catKey}" onclick="openLabModal(${index})">
+<div>
+<!-- Vista previa esquemática -->
+<div class="relative h-48 w-full bg-white border-b-2 border-black flex flex-col items-center justify-center p-2">
+${construirEsquema(imagen, icono, categoria)}
+<span class="absolute top-2 left-2 px-2 py-0.5 border border-black bg-white text-[10px] font-mono font-bold uppercase">
+            ${escapeHtml(origen)}
+          </span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 border border-black bg-black text-white text-[10px] font-mono font-bold uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span> Ver Ficha
+          </span>
+</div>
+<!-- Contenido de la tarjeta -->
+<div class="p-5">
+<div class="flex items-center justify-between mb-2 text-xs font-mono">
+<span class="font-bold uppercase tracking-wider border-b border-black">${escapeHtml(categoria)}</span>
+<span class="font-medium text-black">[${escapeHtml(aplicaA)}]</span>
+</div>
+<h3 class="text-base font-bold text-black uppercase tracking-tight mt-2 mb-2 group-hover:underline">
+            ${escapeHtml(nombre)}
+          </h3>
+<p class="text-black text-xs leading-relaxed line-clamp-3">
+            ${escapeHtml(descripcion)}
+          </p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-black flex items-center justify-between text-xs font-mono font-bold">
+<span class="">${escapeHtml(origen)}</span>
+<span class="flex items-center gap-1 group-hover:underline">
+            Explorar →
+          </span>
+</div>
+</div>
+</div>`;
+  }
+
+  // Programas a los que pertenece un laboratorio (mismo criterio de separación usado en index-lab-externos.html)
+  function programasDeLab(lab) {
+    return (lab['Programa(s)'] || '')
+      .split(/[,;]/)
+      .map(p => p.trim())
+      .filter(Boolean);
+  }
+
+  async function cargarLaboratorios() {
+    const grid = document.getElementById('labsGrid');
+    try {
+      const res = await fetch('../Datos/General-labs.json');
+      const todosLosLabs = await res.json();
+
+      // ¿Viene de una tarjeta de programa? Filtrar solo los laboratorios de ese programa.
+      const params = new URLSearchParams(window.location.search);
+      const programaSeleccionado = (params.get('programa') || '').trim();
+
+      labsData = programaSeleccionado
+        ? todosLosLabs.filter(lab => programasDeLab(lab).includes(programaSeleccionado))
+        : todosLosLabs;
+
+      const badge = document.getElementById('programaActivoBadge');
+      const heroTitle = document.getElementById('heroTitle');
+      if (programaSeleccionado) {
+        document.getElementById('programaActivoNombre').textContent = programaSeleccionado;
+        badge.classList.remove('hidden');
+        heroTitle.textContent = `Laboratorios de ${programaSeleccionado}`;
+        document.title = `Laboratorios de ${programaSeleccionado} - U.INCCA`;
+      } else {
+        badge.classList.add('hidden');
+        heroTitle.textContent = 'Laboratorios Externos & Simuladores';
+      }
+
+      if (!labsData.length) {
+        grid.innerHTML = '<p class="col-span-full text-center text-xs font-mono font-bold uppercase text-black py-10">No hay laboratorios registrados para este programa todavía.</p>';
+        document.getElementById('categoryFilterBar').innerHTML = '';
+        return;
+      }
+
+      // Texto de encabezado con orígenes/plataformas reales (solo del conjunto mostrado)
+      const origenes = [];
+      labsData.forEach(l => {
+        const o = (l['Origen / Plataforma'] || '').trim();
+        if (o && !origenes.includes(o)) origenes.push(o);
+      });
+      const heroOrigins = document.getElementById('heroOrigins');
+      if (heroOrigins && origenes.length) {
+        heroOrigins.textContent = origenes.length > 1
+          ? origenes.slice(0, -1).join(', ') + ' y ' + origenes[origenes.length - 1]
+          : origenes[0];
+      }
+
+      construirBarraCategorias(labsData);
+      grid.innerHTML = labsData.map((lab, i) => construirTarjetaLab(lab, i)).join('');
+      activarFallbackImagenes(grid);
+    } catch (err) {
+      console.error('Error cargando General-labs.json:', err);
+      grid.innerHTML = '<p class="col-span-full text-center text-xs font-mono font-bold uppercase text-black py-10">No se pudieron cargar los laboratorios. Verifica que la página se esté sirviendo desde un servidor local.</p>';
+    }
+  }
+
+  // Filtrar por categoría real
+  function filterCategory(cat, btn) {
+    document.querySelectorAll('.category-btn').forEach(b => {
+      b.classList.remove('bg-black', 'text-white');
+      b.classList.add('bg-white', 'text-black');
+    });
+    btn.classList.add('bg-black', 'text-white');
+    btn.classList.remove('bg-white', 'text-black');
+
+    const cards = document.querySelectorAll('.lab-card');
+    cards.forEach(card => {
+      const itemCat = card.getAttribute('data-category');
+      if (cat === 'all' || itemCat === cat) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Control del modal con datos reales del laboratorio
+  function openLabModal(index) {
+    const data = labsData[index];
+    if (!data) return;
+
+    const categoria = (data['Categoría'] || '').trim();
+    const origen = (data['Origen / Plataforma'] || '').trim();
+    const aplicaA = (data['Aplica a'] || '').trim();
+
+    document.getElementById('modalTitle').textContent = data['Nombre del Laboratorio'] || '';
+    document.getElementById('modalCategoryBadge').textContent = categoria;
+    document.getElementById('modalLocationText').textContent = origen;
+    document.getElementById('modalDescription').textContent = (data['Descripción '] || '').trim();
+    document.getElementById('modalModalidad').textContent = (data['Compatible con Moodle'] || '—').trim();
+    document.getElementById('modalCosto').textContent = (data['Costo'] || '—').trim();
+    document.getElementById('modalTransversal').textContent = aplicaA === 'Transversal' ? 'Sí' : (aplicaA ? 'No' : '—');
+    // Esquema visual: imagen real (solo PhET) o esquema de categoría, con leyenda de origen
+    const icono = ICONOS_CATEGORIA[categoria] || ICONO_DEFAULT;
+    const imagen = (data['imagen'] || '').trim();
+    const wireframeBox = document.getElementById('modalWireframeBox');
+    wireframeBox.className = imagen
+      ? 'mt-4 border-2 border-black bg-white overflow-hidden'
+      : 'mt-4 border-2 border-dashed border-black p-4 text-center bg-white';
+    wireframeBox.innerHTML = imagen
+      ? `<div class="h-56">${construirEsquema(imagen, icono, categoria)}</div><div class="font-mono text-[11px] text-black text-center py-2 border-t-2 border-black">${escapeHtml(origen)} • ${escapeHtml(aplicaA)}</div>`
+      : `<div class="font-mono text-xs font-bold uppercase tracking-wider mb-1">[ ESQUEMA: ${escapeHtml(categoria.toUpperCase())} ]</div><div class="font-mono text-[11px] text-black">${escapeHtml(origen)} • ${escapeHtml(aplicaA)}</div>`;
+    activarFallbackImagenes(wireframeBox);
+
+    const resourceLink = document.getElementById('modalResourceLink');
+    const url = (data['Link del Recurso'] || '').trim();
+    if (url) {
+      resourceLink.href = url;
+      resourceLink.classList.remove('hidden');
+    } else {
+      resourceLink.classList.add('hidden');
+    }
+
+    // Render de chips de Materias reales (separadas por ";")
+    const materiasContainer = document.getElementById('modalMateriasList');
+    materiasContainer.innerHTML = '';
+    const materiasTexto = (data['Materias'] || '').trim();
+    const materias = materiasTexto ? materiasTexto.split(';').map(m => m.trim()).filter(Boolean) : [];
+    materias.forEach(item => {
+      const chip = document.createElement('span');
+      chip.className = 'inline-flex items-center px-2 py-1 border border-black bg-white text-black font-mono text-xs font-semibold';
+      chip.textContent = item;
+      materiasContainer.appendChild(chip);
+    });
+
+    const modal = document.getElementById('labModal');
+    modal.classList.remove('hidden-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLabModal() {
+    const modal = document.getElementById('labModal');
+    modal.classList.add('hidden-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Cerrar al clickear fuera
+  document.getElementById('labModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeLabModal();
+    }
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLabModal();
+    }
+  });
+
+  cargarLaboratorios();
+</script>
+
+
+</body></html>

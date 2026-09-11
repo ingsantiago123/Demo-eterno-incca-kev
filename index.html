@@ -1,0 +1,456 @@
+
+<!---  Esta es l aseccion principal   -->
+
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Incconection-lab - Laboratorios Virtuales</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Roboto+Flex:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#e4c454",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#747684",
+            "primary-container": "#0b349d",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#444653",
+            "on-tertiary-fixed": "#231b00",
+            "on-tertiary-container": "#4d3e00",
+            "surface-tint": "#3856be",
+            "on-surface": "#0f1742",
+            "surface-dim": "#d3d8ff",
+            "primary": "#002071",
+            "outline-variant": "#c4c5d5",
+            "tertiary-fixed": "#ffe17b",
+            "surface-container-low": "#f4f2ff",
+            "secondary-fixed": "#d5e3ff",
+            "surface-container-highest": "#dee0ff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#001b3c",
+            "on-primary-fixed-variant": "#193da5",
+            "secondary-fixed-dim": "#a8c8ff",
+            "on-primary": "#ffffff",
+            "surface": "#fbf8ff",
+            "on-tertiary-fixed-variant": "#564500",
+            "on-tertiary": "#ffffff",
+            "surface-container": "#ececff",
+            "on-primary-container": "#90a6ff",
+            "inverse-surface": "#252d58",
+            "inverse-primary": "#b7c4ff",
+            "primary-fixed-dim": "#b7c4ff",
+            "background": "#fbf8ff",
+            "surface-variant": "#dee0ff",
+            "on-background": "#0f1742",
+            "secondary-container": "#0074dc",
+            "surface-container-high": "#e5e6ff",
+            "inverse-on-surface": "#f0efff",
+            "secondary": "#005bb0",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#001551",
+            "primary-fixed": "#dce1ff",
+            "on-secondary-container": "#fefcff",
+            "tertiary": "#715c00",
+            "on-secondary-fixed-variant": "#00468a",
+            "on-error": "#ffffff",
+            "tertiary-container": "#c7a93b",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fbf8ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Outfit", "sans-serif"],
+            "body": ["Roboto Flex", "sans-serif"],
+            "code-num": ["Roboto Flex", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Isometric 3D Grid Canvas & Plane */
+    .iso-grid-bg {
+      background-size: 44px 44px;
+      background-image: 
+        linear-gradient(to right, rgba(56, 86, 190, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 86, 190, 0.08) 1px, transparent 1px);
+      transform: perspective(1000px) rotateX(42deg) scale(1.4);
+      transform-origin: 50% 0%;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 85%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 85%);
+    }
+
+    /* 3D tilt card container */
+    .card-perspective {
+      perspective: 1200px;
+    }
+
+    .tilt-card {
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease, border-color 0.25s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* Neon edge gradient animation */
+    .neon-border-live {
+      box-shadow: 0 10px 30px -8px rgba(0, 116, 220, 0.25);
+    }
+    .neon-border-live:hover {
+      box-shadow: 0 20px 45px -5px rgba(0, 116, 220, 0.45), 0 0 20px 2px rgba(144, 166, 255, 0.5);
+    }
+
+    .neon-border-amber {
+      box-shadow: 0 10px 30px -8px rgba(199, 169, 59, 0.25);
+    }
+    .neon-border-amber:hover {
+      box-shadow: 0 20px 45px -5px rgba(199, 169, 59, 0.45), 0 0 20px 2px rgba(255, 225, 123, 0.5);
+    }
+
+    .neon-border-deep {
+      box-shadow: 0 10px 30px -8px rgba(0, 32, 113, 0.22);
+    }
+    .neon-border-deep:hover {
+      box-shadow: 0 20px 45px -5px rgba(0, 32, 113, 0.4), 0 0 20px 2px rgba(56, 86, 190, 0.4);
+    }
+
+    /* Shimmer ripple on button */
+    .shimmer-button {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        60deg, 
+        rgba(255, 255, 255, 0) 20%, 
+        rgba(255, 255, 255, 0.45) 50%, 
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(25deg);
+      transition: all 0.75s ease;
+    }
+    .shimmer-button:hover::after {
+      left: 130%;
+    }
+
+    /* Radar pulse */
+    @keyframes ping-slow {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+    .pulse-radar {
+      animation: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-black min-h-screen overflow-x-hidden font-body antialiased relative">
+<!-- Constellation and Grid Background System -->
+
+<!-- Main Experience Wrapper -->
+<div class="relative z-10 flex flex-col min-h-screen w-full">
+<!-- Top Shared Navigation Header -->
+<header class="w-full border-b-2 border-black bg-white px-6 sm:px-12 py-4">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-black font-headline">Incconection Lab</h1>
+      <p class="text-sm text-black font-medium">Plataforma Institucional de Laboratorios - Universidad INCCA de Colombia</p>
+    </div>
+    <div class="inline-flex items-center gap-2 border-2 border-black px-3 py-1 text-xs font-bold uppercase tracking-wider self-start sm:self-auto">
+      
+    </div>
+  </div>
+</header>
+<!-- Main Dynamic Content -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 lg:px-12 py-8 flex flex-col gap-8">
+<!-- Hero Header & Filter Segment -->
+<section class="border-b-2 border-black pb-6">
+  <div class="max-w-3xl space-y-2 text-center mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-black font-headline tracking-tight">Catálogo de Entornos de Laboratorio</h2>
+    <p class="text-base text-black leading-relaxed font-normal">Espacio académico y tecnológico diseñado para el aprendizaje práctico, la investigación aplicada y la experimentación digital de la comunidad universitaria.</p>
+  </div>
+</section>
+<!-- 3D Tilt Cards Showcase Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 pt-2 items-stretch">
+  <!-- Section 1: Laboratorios Vivos (INACTIVO - próximamente) -->
+  <article class="border-2 border-black bg-white p-6 flex flex-col justify-between h-full opacity-60 grayscale">
+    <div class="space-y-4">
+      <div class="flex items-start justify-between gap-3 border-b-2 border-black pb-3">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider mb-1">Modalidad Asincrónica</div>
+          <h3 class="text-2xl font-bold font-headline text-black">Laboratorios Vivos</h3>
+        </div>
+        <span class="shrink-0 px-2 py-1 border-2 border-black bg-black text-white text-[10px] font-bold uppercase tracking-wider">Inactivo</span>
+      </div>
+      <p class="text-sm text-black leading-relaxed">
+        Prácticas de laboratorio realizadas en la universidad y grabadas en video para consulta y estudio asincrónico (no son transmisiones en vivo).
+      </p>
+      <div class="pt-2">
+        <p class="text-xs font-bold uppercase mb-2">Áreas y recursos disponibles:</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Grabaciones HD de prácticas</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Ingeniería de Sistemas</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Ingeniería Industrial</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Ingeniería de Alimentos</span>
+        </div>
+      </div>
+    </div>
+    <div class="pt-6 mt-6 border-t-2 border-black">
+      <button class="w-full py-3 px-4 border-2 border-black bg-white text-black/40 font-bold text-sm cursor-not-allowed text-center" disabled="" title="Próximamente disponible">
+        Próximamente Disponible
+      </button>
+    </div>
+  </article>
+
+  <!-- Section 2: Laboratorios Propios (INACTIVO - próximamente) -->
+  <article class="border-2 border-black bg-white p-6 flex flex-col justify-between h-full opacity-60 grayscale">
+    <div class="space-y-4">
+      <div class="flex items-start justify-between gap-3 border-b-2 border-black pb-3">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider mb-1">Desarrollo Institucional</div>
+          <h3 class="text-2xl font-bold font-headline text-black">Laboratorios Propios</h3>
+        </div>
+        <span class="shrink-0 px-2 py-1 border-2 border-black bg-black text-white text-[10px] font-bold uppercase tracking-wider">Inactivo</span>
+      </div>
+      <p class="text-sm text-black leading-relaxed">
+        Aplicativos interactivos desarrollados directamente por la Universidad INCCA para los estudiantes (simuladores, herramientas de software, juegos educativos y recursos didácticos).
+      </p>
+      <div class="pt-2">
+        <p class="text-xs font-bold uppercase mb-2">Módulos y herramientas:</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Simuladores INCCA</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Juegos educativos</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Bancos de prueba virtuales</span>
+        </div>
+      </div>
+    </div>
+    <div class="pt-6 mt-6 border-t-2 border-black">
+      <button class="w-full py-3 px-4 border-2 border-black bg-white text-black/40 font-bold text-sm cursor-not-allowed text-center" disabled="" title="Próximamente disponible">
+        Próximamente Disponible
+      </button>
+    </div>
+  </article>
+
+  <!-- Section 3: Laboratorios Externos -->
+  <article class="border-2 border-black bg-white p-6 flex flex-col justify-between h-full">
+    <div class="space-y-4">
+      <div class="border-b-2 border-black pb-3">
+        <div class="text-xs font-bold uppercase tracking-wider mb-1">Plataformas Aliadas</div>
+        <h3 class="text-2xl font-bold font-headline text-black">Laboratorios Externos</h3>
+      </div>
+      <p class="text-sm text-black leading-relaxed">
+        Recursos académicos y tecnológicos de otras empresas u organizaciones disponibles en Internet (PhET, Cisco, Labster, simuladores web y herramientas aliadas).
+      </p>
+      <div class="pt-2">
+        <p class="text-xs font-bold uppercase mb-2">Ecosistema externo:</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Simuladores web</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Convenios externos</span>
+          <span class="border-2 border-black px-2.5 py-1 text-xs font-semibold text-black">Herramientas en la nube</span>
+        </div>
+      </div>
+    </div>
+    <div class="pt-6 mt-6 border-t-2 border-black">
+      <a class="block w-full py-3 px-4 border-2 border-black bg-white text-black font-bold text-sm hover:bg-black hover:text-white transition-colors duration-200 text-center" href="lab-externos/index-lab-externos.html">
+        Ver Recursos Externos →
+      </a>
+    </div>
+  </article>
+</section>
+<!-- Live Stream Telemetry Footer Banner (Atmospheric & Minimal) -->
+
+</main>
+<!-- Bottom Light Bar -->
+
+</div>
+<!-- Interactive Logic for 3D Tilt, Particle Constellation, and Filter Badges -->
+<script>
+    // --- 1. Interactive 3D Card Tilt System ---
+    const cards = document.querySelectorAll('.tilt-card');
+    
+    cards.forEach(card => {
+      const parent = card.parentElement;
+      
+      parent.addEventListener('mousemove', (e) => {
+        const rect = parent.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -9; // Max 9 deg
+        const rotateY = ((x - centerX) / centerX) * 9;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      parent.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateX(0deg) rotateY(0deg) translateY(0px)`;
+      });
+    });
+
+    // --- 2. Floating Particle Constellation Canvas with Mouse Waves ---
+    const canvas = document.getElementById('constellationCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    let mouse = { x: null, y: null, radius: 140 };
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.baseRadius = Math.random() * 2 + 1;
+        this.radius = this.baseRadius;
+        this.vx = (Math.random() - 0.5) * 0.7;
+        this.vy = (Math.random() - 0.5) * 0.7;
+        this.color = Math.random() > 0.4 ? 'rgba(0, 116, 220, ' : 'rgba(199, 169, 59, ';
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+
+        // Mouse proximity reaction
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            this.x -= (dx / dist) * force * 3;
+            this.y -= (dy / dist) * force * 3;
+            this.radius = this.baseRadius + force * 2.5;
+          } else {
+            this.radius = this.baseRadius;
+          }
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `${this.color}${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    const particleCount = Math.min(Math.floor(window.innerWidth / 18), 75);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Connect lines within threshold
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            const alpha = (1 - dist / 110) * 0.18;
+            ctx.strokeStyle = `rgba(56, 86, 190, ${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // --- 3. Filter Tabs Interaction ---
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const cardContainers = document.querySelectorAll('.card-perspective');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm', 'font-bold');
+          t.classList.add('text-on-surface-variant', 'font-medium');
+        });
+        tab.classList.add('bg-primary', 'text-on-primary', 'shadow-sm', 'font-bold');
+        tab.classList.remove('text-on-surface-variant', 'font-medium');
+
+        const filter = tab.getAttribute('data-filter');
+        cardContainers.forEach(c => {
+          const cat = c.getAttribute('data-category');
+          if (filter === 'all' || filter === cat) {
+            c.style.display = 'block';
+            setTimeout(() => {
+              c.style.opacity = '1';
+              c.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            c.style.opacity = '0';
+            c.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              c.style.display = 'none';
+            }, 200);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

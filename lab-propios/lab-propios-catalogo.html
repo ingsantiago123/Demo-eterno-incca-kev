@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Laboratorios Propios - Catálogo y Ficha Técnica (U.INCCA)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Manrope', sans-serif;
+    }
+    h1, h2, h3, .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+    /* Modal transitions & hidden state */
+    #labModal {
+      transition: opacity 0.25s ease-out, visibility 0.25s ease-out;
+    }
+    #labModal.hidden-modal {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      display: none !important;
+    }
+    #modalCard {
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease-out;
+    }
+    #labModal.hidden-modal #modalCard {
+      transform: scale(0.96) translateY(12px);
+      opacity: 0;
+    }
+    /* Custom scrollbar inside modal body */
+    .modal-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-scroll::-webkit-scrollbar-track {
+      background: #ffffff;
+    }
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: #000000;
+      border-radius: 9999px;
+    }
+  </style>
+  
+</head>
+<body class="min-h-screen relative overflow-x-hidden text-black selection:bg-black selection:text-white" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">
+<!-- Main container (sin header ni footer) -->
+<main class="relative z-10 max-w-7xl mx-auto px-6 py-10 lg:py-12">
+<!-- Barra superior de navegación simple -->
+<div class="flex items-center justify-between gap-4 mb-8"><a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black font-semibold text-sm border-2 border-black hover:bg-black hover:text-white transition-all" href="#"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="">Volver a Carreras</span></a><div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border-2 border-black text-xs font-semibold text-black"><span class="w-2 h-2 rounded-full bg-black"></span><span class="">Infraestructura Propia U.INCCA • Campus Central</span></div></div>
+<!-- Encabezado de la vista -->
+<div class="text-center max-w-3xl mx-auto mb-10"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border-2 border-black text-black text-xs font-bold tracking-wider uppercase mb-3.5"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693l-1.57-.393m15.6 0l1.17 4.678A1.5 1.5 0 0119.51 21H4.49a1.5 1.5 0 01-1.46-1.722l1.17-4.678" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="">Espacios de Experimentación Física</span></div><h1 class="text-3xl md:text-5xl font-extrabold text-black tracking-tight leading-tight mb-3">Laboratorios de <span class="underline decoration-2 underline-offset-4">Ingeniería &amp; Ciencias</span></h1><p class="text-black text-base md:text-lg max-w-2xl mx-auto leading-relaxed">Explora las salas y bancos experimentales fabricados y operados directamente por la <strong class="text-black font-bold">Universidad INCCA de Colombia</strong>. Selecciona cualquier laboratorio para abrir su ficha técnica.</p></div>
+<!-- Barra de Filtro de Categorías -->
+<div class="mb-9 flex flex-wrap items-center justify-center gap-2.5"><button class="category-btn px-4 py-2 rounded-lg text-sm font-bold border-2 border-black bg-black text-white" onclick="filterCategory('all', this)">Todos los Laboratorios <span class="ml-1.5 px-1.5 py-0.5 rounded border border-white text-xs">6</span></button><button class="category-btn px-4 py-2 rounded-lg text-sm font-semibold border-2 border-black bg-white text-black hover:bg-black hover:text-white transition-all" onclick="filterCategory('sistemas', this)">Redes &amp; Sistemas <span class="ml-1 px-1.5 py-0.5 rounded border border-black text-xs">2</span></button><button class="category-btn px-4 py-2 rounded-lg text-sm font-semibold border-2 border-black bg-white text-black hover:bg-black hover:text-white transition-all" onclick="filterCategory('mecanica', this)">Mecánica &amp; Manufactura <span class="ml-1 px-1.5 py-0.5 rounded border border-black text-xs">2</span></button><button class="category-btn px-4 py-2 rounded-lg text-sm font-semibold border-2 border-black bg-white text-black hover:bg-black hover:text-white transition-all" onclick="filterCategory('electronica', this)">Electrónica &amp; Señales <span class="ml-1 px-1.5 py-0.5 rounded border border-black text-xs">1</span></button><button class="category-btn px-4 py-2 rounded-lg text-sm font-semibold border-2 border-black bg-white text-black hover:bg-black hover:text-white transition-all" onclick="filterCategory('biologia', this)">Biotecnología &amp; Química <span class="ml-1 px-1.5 py-0.5 rounded border border-black text-xs">1</span></button></div>
+<!-- Grilla de Laboratorios -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="labsGrid"><div class="lab-card group cursor-pointer bg-white rounded-xl overflow-hidden border-2 border-black transition-all hover:bg-slate-50 flex flex-col" data-category="sistemas" onclick="openLabModal(0)" style="display: flex;"><div class="relative h-48 w-full bg-white border-b-2 border-black flex items-center justify-center p-4"><div class="w-full h-full border border-dashed border-black flex flex-col items-center justify-center gap-2 bg-white"><svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="8" rx="2" stroke-width="2" width="20" x="2" y="2"></rect><rect height="8" rx="2" stroke-width="2" width="20" x="2" y="14"></rect><line stroke-width="2" x1="6" x2="6.01" y1="6" y2="6"></line><line stroke-width="2" x1="6" x2="6.01" y1="18" y2="18"></line></svg><span class="text-[11px] font-mono text-black font-semibold uppercase tracking-wider">[ Esquema: Redes Cisco ]</span></div><span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-white border border-black text-[11px] font-bold text-black">Sala 402 • Campus Sur</span><span class="absolute bottom-3 right-3 text-black text-xs font-semibold px-2 py-0.5 rounded bg-white border border-black flex items-center gap-1"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>Ver Ficha</span></div><div class="p-5 flex-1 flex flex-col justify-between bg-white"><div class="space-y-1.5"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-wider text-black">Redes &amp; Telecom</span><span class="text-xs text-black font-semibold">Capacidad: 24 est.</span></div><h3 class="text-lg font-bold text-black group-hover:underline">Laboratorio de Redes Cisco &amp; Clúster</h3><p class="text-black text-sm line-clamp-2">Racks de conmutación BGP/OSPF, servidores Blade para virtualización y nodos de pruebas de ciberseguridad defensiva.</p></div><div class="mt-4 pt-3 border-t border-black flex items-center justify-between text-xs font-bold text-black"><span class="">U.INCCA Propio</span><span class="flex items-center gap-1 text-black">Detalles rápidos →</span></div></div></div><div class="lab-card group cursor-pointer bg-white rounded-xl overflow-hidden border-2 border-black transition-all hover:bg-slate-50 flex flex-col" data-category="sistemas" onclick="openLabModal(1)" style="display: flex;"><div class="relative h-48 w-full bg-white border-b-2 border-black flex items-center justify-center p-4"><div class="w-full h-full border border-dashed border-black flex flex-col items-center justify-center gap-2 bg-white"><svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="16" rx="2" stroke-width="2" width="16" x="4" y="4"></rect><rect height="6" width="6" x="9" y="9"></rect><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path></svg><span class="text-[11px] font-mono text-black font-semibold uppercase tracking-wider">[ Esquema: FPGA &amp; IoT ]</span></div><span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-white border border-black text-[11px] font-bold text-black">Sala 305 • Electrónica</span><span class="absolute bottom-3 right-3 text-black text-xs font-semibold px-2 py-0.5 rounded bg-white border border-black flex items-center gap-1"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>Ver Ficha</span></div><div class="p-5 flex-1 flex flex-col justify-between bg-white"><div class="space-y-1.5"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-wider text-black">IoT &amp; Microelectrónica</span><span class="text-xs text-black font-semibold">Capacidad: 18 est.</span></div><h3 class="text-lg font-bold text-black group-hover:underline">Banco de Desarrollo FPGA &amp; IoT</h3><p class="text-black text-sm line-clamp-2">Tarjetas Xilinx Artix-7, microcontroladores ARM Cortex-M4, analizadores lógicos e instrumentación digital para sensores.</p></div><div class="mt-4 pt-3 border-t border-black flex items-center justify-between text-xs font-bold text-black"><span class="">U.INCCA Propio</span><span class="flex items-center gap-1 text-black">Detalles rápidos →</span></div></div></div><div class="lab-card group cursor-pointer bg-white rounded-xl overflow-hidden border-2 border-black transition-all hover:bg-slate-50 flex flex-col" data-category="mecanica" onclick="openLabModal(2)" style="display: flex;"><div class="relative h-48 w-full bg-white border-b-2 border-black flex items-center justify-center p-4"><div class="w-full h-full border border-dashed border-black flex flex-col items-center justify-center gap-2 bg-white"><svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg><span class="text-[11px] font-mono text-black font-semibold uppercase tracking-wider">[ Esquema: Túnel Viento ]</span></div><span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-white border border-black text-[11px] font-bold text-black">Nave Mecánica • Edificio C</span><span class="absolute bottom-3 right-3 text-black text-xs font-semibold px-2 py-0.5 rounded bg-white border border-black flex items-center gap-1"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>Ver Ficha</span></div><div class="p-5 flex-1 flex flex-col justify-between bg-white"><div class="space-y-1.5"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-wider text-black">Mecánica de Fluidos</span><span class="text-xs text-black font-semibold">Capacidad: 16 est.</span></div><h3 class="text-lg font-bold text-black group-hover:underline">Túnel Aerodinámico &amp; Térmica</h3><p class="text-black text-sm line-clamp-2">Túnel subsónico instrumentado para perfiles alares, banco de intercambio térmico y pruebas de resistencia aerodinámica.</p></div><div class="mt-4 pt-3 border-t border-black flex items-center justify-between text-xs font-bold text-black"><span class="">U.INCCA Propio</span><span class="flex items-center gap-1 text-black">Detalles rápidos →</span></div></div></div><div class="lab-card group cursor-pointer bg-white rounded-xl overflow-hidden border-2 border-black transition-all hover:bg-slate-50 flex flex-col" data-category="mecanica" onclick="openLabModal(3)" style="display: flex;"><div class="relative h-48 w-full bg-white border-b-2 border-black flex items-center justify-center p-4"><div class="w-full h-full border border-dashed border-black flex flex-col items-center justify-center gap-2 bg-white"><svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span class="text-[11px] font-mono text-black font-semibold uppercase tracking-wider">[ Esquema: Planta CNC ]</span></div><span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-white border border-black text-[11px] font-bold text-black">Taller 101 • Manufactura</span><span class="absolute bottom-3 right-3 text-black text-xs font-semibold px-2 py-0.5 rounded bg-white border border-black flex items-center gap-1"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>Ver Ficha</span></div><div class="p-5 flex-1 flex flex-col justify-between bg-white"><div class="space-y-1.5"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-wider text-black">Mecanizado &amp; Ensayos</span><span class="text-xs text-black font-semibold">Capacidad: 20 est.</span></div><h3 class="text-lg font-bold text-black group-hover:underline">Planta Piloto CNC &amp; Tracción Universal</h3><p class="text-black text-sm line-clamp-2">Centro de mecanizado CNC de 3 ejes, torno computarizado y máquina universal de tracción y compresión de probetas.</p></div><div class="mt-4 pt-3 border-t border-black flex items-center justify-between text-xs font-bold text-black"><span class="">U.INCCA Propio</span><span class="flex items-center gap-1 text-black">Detalles rápidos →</span></div></div></div><div class="lab-card group cursor-pointer bg-white rounded-xl overflow-hidden border-2 border-black transition-all hover:bg-slate-50 flex flex-col" data-category="electronica" onclick="openLabModal(4)" style="display: flex;"><div class="relative h-48 w-full bg-white border-b-2 border-black flex items-center justify-center p-4"><div class="w-full h-full border border-dashed border-black flex flex-col items-center justify-center gap-2 bg-white"><svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg><span class="text-[11px] font-mono text-black font-semibold uppercase tracking-wider">[ Esquema: Potencia &amp; RF ]</span></div><span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-white border border-black text-[11px] font-bold text-black">Sala 204 • Potencia</span><span class="absolute bottom-3 right-3 text-black text-xs font-semibold px-2 py-0.5 rounded bg-white border border-black flex items-center gap-1"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>Ver Ficha</span></div><div class="p-5 flex-1 flex flex-col justify-between bg-white"><div class="space-y-1.5"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-wider text-black">Osciloscopía &amp; RF</span><span class="text-xs text-black font-semibold">Capacidad: 20 est.</span></div><h3 class="text-lg font-bold text-black group-hover:underline">Laboratorio de Alta Frecuencia &amp; Potencia</h3><p class="text-black text-sm line-clamp-2">Osciloscopios de 4 canales 200MHz con FFT, generadores de función arbitraria, fuentes duales reguladas y banco de microondas.</p></div><div class="mt-4 pt-3 border-t border-black flex items-center justify-between text-xs font-bold text-black"><span class="">U.INCCA Propio</span><span class="flex items-center gap-1 text-black">Detalles rápidos →</span></div></div></div><div class="lab-card group cursor-pointer bg-white rounded-xl overflow-hidden border-2 border-black transition-all hover:bg-slate-50 flex flex-col" data-category="biologia" onclick="openLabModal(5)" style="display: flex;"><div class="relative h-48 w-full bg-white border-b-2 border-black flex items-center justify-center p-4"><div class="w-full h-full border border-dashed border-black flex flex-col items-center justify-center gap-2 bg-white"><svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10 2v7.31L4.15 19.1A2 2 0 0 0 5.86 22h12.28a2 2 0 0 0 1.71-2.9L14 9.31V2"></path></svg><span class="text-[11px] font-mono text-black font-semibold uppercase tracking-wider">[ Esquema: Biorreactores ]</span></div><span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-white border border-black text-[11px] font-bold text-black">Lab B-12 • Biotecnología</span><span class="absolute bottom-3 right-3 text-black text-xs font-semibold px-2 py-0.5 rounded bg-white border border-black flex items-center gap-1"><svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>Ver Ficha</span></div><div class="p-5 flex-1 flex flex-col justify-between bg-white"><div class="space-y-1.5"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-wider text-black">Microbiología &amp; Bioprocesos</span><span class="text-xs text-black font-semibold">Capacidad: 22 est.</span></div><h3 class="text-lg font-bold text-black group-hover:underline">Laboratorio de Biorreactores &amp; Cultivo</h3><p class="text-black text-sm line-clamp-2">Biorreactores de 5L con control de pH/OD, microscopios trinoculares de fluorescencia y cabina de flujo laminar clase II.</p></div><div class="mt-4 pt-3 border-t border-black flex items-center justify-between text-xs font-bold text-black"><span class="">U.INCCA Propio</span><span class="flex items-center gap-1 text-black">Detalles rápidos →</span></div></div></div></div>
+<!-- Indicador discreto al pie sin footer pesado -->
+<div class="mt-12 text-center text-xs font-semibold text-black"><p class="border-t-2 border-black pt-4 inline-block px-6 uppercase tracking-wider">Espacios académicos propios y certificados • Universidad INCCA de Colombia 2025</p></div>
+</main>
+<!-- POPUP / MODAL DETALLADO DE LABORATORIO (OCULTO POR DEFECTO CON hidden-modal Y display:none) -->
+<div class="hidden-modal fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm" id="labModal" style="display: none;"><div class="relative w-full max-w-2xl bg-white rounded-2xl border-2 border-black shadow-none overflow-hidden flex flex-col max-h-[92vh]" id="modalCard"><div class="relative w-full h-44 sm:h-52 bg-white border-b-2 border-black shrink-0 overflow-hidden flex flex-col justify-between p-5"><div class="absolute inset-0 bg-white border-dashed border-b border-black -z-0 flex items-center justify-center" id="modalLabVisual"><div class="flex flex-col items-center gap-1 text-black"><svg class="w-10 h-10 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" stroke-width="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span class="text-xs font-mono font-bold tracking-widest text-black uppercase">[ WIREFRAME BLUEPRINT ]</span></div></div><button aria-label="Cerrar modal" class="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-lg bg-white hover:bg-black text-black hover:text-white border-2 border-black transition-all focus:outline-none" onclick="closeLabModal()"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="relative z-10 mt-auto"><div class="flex flex-wrap items-center gap-2 mb-2"><span class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wide bg-white text-black border-2 border-black" id="modalCategoryBadge">Redes &amp; Sistemas</span><span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded bg-white text-black border-2 border-black" id="modalUbicacionBadge"><svg class="w-3 h-3 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><span class="" id="modalLocationText">Edificio Central • Sala 402</span></span></div><h2 class="text-xl sm:text-2xl font-extrabold text-black tracking-tight leading-snug bg-white px-2 py-0.5 border-2 border-black inline-block rounded" id="modalTitle">Laboratorio de Redes Cisco &amp; Clúster de Servidores</h2></div></div><div class="p-6 space-y-5 overflow-y-auto modal-scroll bg-white"><div><h4 class="text-xs font-bold uppercase tracking-wider text-black mb-1.5 flex items-center gap-1.5"><svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>¿Qué se realiza en este laboratorio?</h4><p class="text-black text-sm leading-relaxed border-l-2 border-black pl-3 py-0.5" id="modalDescription">Espacio especializado para el diseño, simulación y despliegue físico de infraestructuras de red corporativa, enrutamiento dinámico multihoming (BGP, OSPF) y auditoría de seguridad perimetral sobre enlaces reales.</p></div><div><h4 class="text-xs font-bold uppercase tracking-wider text-black mb-2 flex items-center gap-1.5"><svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Equipos e Instrumentación Clave</h4><div class="flex flex-wrap gap-2" id="modalEquipmentList"><span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-black border-2 border-black">Racks Cisco Catalyst 2960</span><span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-black border-2 border-black">Routers Cisco 2901</span><span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-black border-2 border-black">Servidores Blade ProLiant</span><span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-black border-2 border-black">Analizador de paquetes Wireshark Tap</span><span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-black border-2 border-black">Patch panels categoría 6A</span></div></div><div class="grid grid-cols-3 gap-3 p-3.5 rounded-xl bg-white border-2 border-black text-center"><div><div class="text-[11px] font-bold text-black uppercase tracking-wide">Capacidad</div><div class="text-sm font-extrabold text-black mt-0.5" id="modalCapacidad">24 Estudiantes</div></div><div class="border-x-2 border-black"><div class="text-[11px] font-bold text-black uppercase tracking-wide">Operación</div><div class="text-sm font-extrabold text-black mt-0.5">100% U.INCCA</div></div><div><div class="text-[11px] font-bold text-black uppercase tracking-wide">Carreras</div><div class="text-sm font-extrabold text-black mt-0.5" id="modalCarrera">Ing. Sistemas</div></div></div></div></div></div>
+<!-- JavaScript interactivo (Filtro por categoría + Modal dinámico) -->
+<script>
+    // Datos concisos de cada laboratorio propio
+    const labsData = [
+      {
+        title: "Laboratorio de Redes Cisco & Clúster de Servidores",
+        category: "Redes & Sistemas",
+        categoryKey: "sistemas",
+        location: "Edificio Central • Sala 402",
+        description: "Espacio especializado para el diseño, simulación y despliegue físico de infraestructuras de red corporativa, enrutamiento dinámico multihoming (BGP, OSPF) y auditoría de seguridad perimetral sobre enlaces reales.",
+        equipment: ["Racks Cisco Catalyst 2960", "Routers Cisco 2901", "Servidores Blade ProLiant", "Analizador de paquetes Wireshark Tap", "Patch panels categoría 6A"],
+        capacity: "24 Estudiantes",
+        career: "Ing. Sistemas"
+      },
+      {
+        title: "Banco de Desarrollo FPGA & Sistemas Embebidos IoT",
+        category: "IoT & Microelectrónica",
+        categoryKey: "sistemas",
+        location: "Edificio Tecnológico • Sala 305",
+        description: "Laboratorio destinado a la síntesis digital en hardware con lógica programable FPGA, programación en VHDL/Verilog y desarrollo de nodos sensoriales inalámbricos de bajo consumo energético.",
+        equipment: ["Tarjetas Xilinx Artix-7", "Analizadores Lógicos 16 canales", "Kits ARM Cortex-M4", "Osciloscopios USB Mixed Signal", "Bancos de soldadura SMD con control térmico"],
+        capacity: "18 Estudiantes",
+        career: "Sistemas y Electrónica"
+      },
+      {
+        title: "Túnel Aerodinámico & Banco de Termodinámica",
+        category: "Mecánica de Fluidos",
+        categoryKey: "mecanica",
+        location: "Nave Mecánica • Edificio C",
+        description: "Permite la experimentación cuantitativa de sustentación y arrastre sobre perfiles aerodinámicos a escala, cálculo de coeficientes de transferencia de calor y modelación de flujo subsónico continuo.",
+        equipment: ["Túnel subsónico instrumentado", "Sonda Pitot diferencial digital", "Intercambiador de calor tubos y coraza", "Sensores de presión piezorresistivos", "Anemómetro de hilo caliente"],
+        capacity: "16 Estudiantes",
+        career: "Ing. Mecánica"
+      },
+      {
+        title: "Planta Piloto CNC & Ensayo Universal de Materiales",
+        category: "Mecanizado & Ensayos",
+        categoryKey: "mecanica",
+        location: "Taller Industrial • Sala 101",
+        description: "Centro de manufactura computarizada para mecanizado de piezas de alta precisión y evaluación destructiva de propiedades mecánicas: tracción, compresión, torsión y resiliencia de metales y polímeros.",
+        equipment: ["Centro de Mecanizado CNC 3 ejes", "Torno CNC con control numérico", "Máquina Universal de Ensayos 100kN", "Durómetro Rockwell digital", "Proyectores de perfiles ópticos"],
+        capacity: "20 Estudiantes",
+        career: "Mecánica e Industrial"
+      },
+      {
+        title: "Laboratorio de Alta Frecuencia & Electrónica de Potencia",
+        category: "Osciloscopía & RF",
+        categoryKey: "electronica",
+        location: "Edificio Central • Sala 204",
+        description: "Área de análisis y calibración de circuitos de conmutación de alta eficiencia energética (inversores, convertidores DC-DC) y medición de parámetros electromagnéticos en guías de onda y líneas de transmisión.",
+        equipment: ["Osciloscopios 200MHz 4 canales", "Generadores de formas de onda arbitrarias", "Analizador de espectros RF hasta 3GHz", "Fuentes DC triples programables", "Puente RLC de precisión"],
+        capacity: "20 Estudiantes",
+        career: "Ing. Electrónica"
+      },
+      {
+        title: "Laboratorio de Biorreactores & Bioprocesos Celulares",
+        category: "Microbiología & Bioprocesos",
+        categoryKey: "biologia",
+        location: "Laboratorios Húmedos • Sala B-12",
+        description: "Ambiente controlado para la cinética de crecimiento microbiano, fermentación automatizada, control estricto de parámetros fisicoquímicos en biomasa y formulación de bioensayos ambientales.",
+        equipment: ["Biorreactores automatizados de 5L", "Cabina de bioseguridad Clase II A2", "Microscopios trinoculares con epifluorescencia", "Autoclave digital vertical", "Incubadora con agitación orbital"],
+        capacity: "22 Estudiantes",
+        career: "Biología y Ciencias"
+      }
+    ];
+
+    // Filtrar por categoría
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.classList.remove('bg-black', 'text-white');
+        b.classList.add('bg-white', 'text-black');
+      });
+      btn.classList.add('bg-black', 'text-white');
+      btn.classList.remove('bg-white', 'text-black');
+
+      const cards = document.querySelectorAll('.lab-card');
+      cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (cat === 'all' || itemCat === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal popup control
+    function openLabModal(index) {
+      const data = labsData[index];
+      if (!data) return;
+
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalCategoryBadge').textContent = data.category;
+      document.getElementById('modalLocationText').textContent = data.location;
+      document.getElementById('modalDescription').textContent = data.description;
+      document.getElementById('modalCapacidad').textContent = data.capacity;
+      document.getElementById('modalCarrera').textContent = data.career;
+
+      // Render equipment chips con estilo wireframe
+      const eqContainer = document.getElementById('modalEquipmentList');
+      eqContainer.innerHTML = '';
+      data.equipment.forEach(item => {
+        const chip = document.createElement('span');
+        chip.className = 'inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-white text-black border-2 border-black';
+        chip.textContent = item;
+        eqContainer.appendChild(chip);
+      });
+
+      const modal = document.getElementById('labModal');
+      modal.classList.remove('hidden-modal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLabModal() {
+      const modal = document.getElementById('labModal');
+      modal.classList.add('hidden-modal');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Cerrar al dar click en backdrop
+    document.getElementById('labModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLabModal();
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLabModal();
+      }
+    });
+  </script>
+</body></html>

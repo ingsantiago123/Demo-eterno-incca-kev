@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorios Propios - Selección de Carrera (U.INCCA)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Fondo azul claro luminoso y gradientes de profundidad */
+    body {
+      background: radial-gradient(circle at 50% 20%, #e0f2fe 0%, #bae6fd 35%, #93c5fd 75%, #60a5fa 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Partículas y orbes de luz flotantes */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 420px;
+      height: 420px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.5), rgba(125, 211, 252, 0.3));
+      top: -80px;
+      left: 10%;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.45), rgba(191, 219, 254, 0.4));
+      bottom: -100px;
+      right: 5%;
+      animation-duration: 16s;
+    }
+
+    .orb-3 {
+      width: 320px;
+      height: 320px;
+      background: linear-gradient(135deg, rgba(254, 240, 138, 0.35), rgba(56, 189, 248, 0.3));
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 14s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(30px) scale(1.08); }
+    }
+
+    /* Canvas de partículas dinámicas */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Patrón sutil de cuadrícula tecnológica */
+    .tech-grid {
+      background-image: 
+        radial-gradient(rgba(14, 116, 144, 0.12) 1.5px, transparent 1.5px),
+        linear-gradient(to right, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+      background-size: 32px 32px, 96px 96px, 96px 96px;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.75;
+    }
+
+    /* Glassmorphism para las tarjetas de carrera */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 10px 30px -8px rgba(15, 63, 115, 0.12),
+        0 4px 12px -2px rgba(15, 63, 115, 0.06);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #38bdf8;
+      box-shadow: 
+        0 20px 38px -10px rgba(14, 76, 146, 0.2),
+        0 8px 18px -4px rgba(56, 189, 248, 0.25);
+    }
+
+    /* Brillo animado en el borde o badge */
+    @keyframes pulseSoft {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+    .pulse-badge {
+      animation: pulseSoft 3s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb, .glass-card, .pulse-badge {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-6 md:p-10 bg-white text-black" style="background: rgb(255, 255, 255) !important;">
+
+  <!-- Capas de ambiente de fondo -->
+  
+  
+  
+  
+  
+
+  <!-- Contenido principal centrado -->
+  <div class="relative z-10 max-w-6xl mx-auto w-full flex-1 flex flex-col justify-center py-6"><!-- Barra superior de navegación mínima -->
+<div class="flex items-center justify-between mb-8">
+  <button onclick="window.history.back()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-2 border-black text-black text-sm font-bold hover:bg-neutral-100 transition-colors shadow-none cursor-pointer">
+    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    <span class="">Volver a Inicio</span>
+  </button>
+
+  <!-- Indicador neutral -->
+  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-black text-black text-xs font-bold uppercase tracking-wider">
+    <span class="w-2.5 h-2.5 rounded-full bg-black inline-block"></span>
+    <span class="">Infraestructura Física Propia • Campus U.INCCA</span>
+  </div>
+</div>
+
+<!-- Encabezado principal limpio wireframe -->
+<div class="text-center max-w-3xl mx-auto mb-10">
+  <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-black text-black text-xs font-bold tracking-wider uppercase mb-4">
+    <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a10.99 10.99 0 014.75-2.001V4.5a.5.5 0 011 0v1.55a10.99 10.99 0 014.75 2.001l2.644-1.131a1 1 0 000-1.84l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.69-4.825zm13.38 0A8.969 8.969 0 0015 14.222V10.12l1.69-.723zM6.5 11.205V15.5a7.5 7.5 0 007 0v-4.295a9.544 9.544 0 01-7 0z"></path>
+    </svg>
+    Sedes Científicas &amp; Talleres Especializados
+  </div>
+
+  <h1 class="text-4xl md:text-5xl font-extrabold text-black tracking-tight leading-tight mb-3">
+    Laboratorios Propios U.INCCA
+  </h1>
+
+  <p class="text-base md:text-lg text-black font-normal leading-relaxed">
+    Espacios de experimentación física y virtual diseñados, equipados y operados directamente por la <strong class="text-black font-bold">Universidad INCCA de Colombia</strong>. Selecciona la carrera para explorar sus salas y bancos de prueba.
+  </p>
+</div>
+
+<!-- Grilla de Carreras (Wireframe Monochromatic Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+  <!-- Tarjeta 1: Sistemas -->
+  <div class="bg-white border-2 border-black rounded-xl p-6 flex flex-col justify-between cursor-pointer hover:bg-neutral-50 transition-colors group">
+    <div>
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-11 h-11 p-2.5 rounded-lg bg-white border border-black text-black flex items-center justify-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+          </svg>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-bold rounded bg-white text-black border border-black uppercase tracking-wider">
+          Facultad de Ingeniería
+        </span>
+      </div>
+      <h2 class="text-xl font-extrabold text-black mb-2">
+        Ingeniería de Sistemas
+      </h2>
+      <p class="text-black text-sm leading-relaxed mb-4 font-normal">
+        Clúster de servidores locales, racks de enrutamiento Cisco, laboratorio de IoT, sistemas embebidos y banco de desarrollo FPGA.
+      </p>
+    </div>
+    <div class="pt-4 border-t-2 border-black flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-xs font-bold text-black">
+        <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">4 Salas Propias</span>
+      </div>
+      <span class="inline-flex items-center gap-1 text-xs font-black text-black group-hover:translate-x-1 transition-transform uppercase tracking-wider">
+        Ingresar
+        <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- Tarjeta 2: Mecánica -->
+  <div class="bg-white border-2 border-black rounded-xl p-6 flex flex-col justify-between cursor-pointer hover:bg-neutral-50 transition-colors group">
+    <div>
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-11 h-11 p-2.5 rounded-lg bg-white border border-black text-black flex items-center justify-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-bold rounded bg-white text-black border border-black uppercase tracking-wider">
+          Facultad de Ingeniería
+        </span>
+      </div>
+      <h2 class="text-xl font-extrabold text-black mb-2">
+        Ingeniería Mecánica
+      </h2>
+      <p class="text-black text-sm leading-relaxed mb-4 font-normal">
+        Bancos de termodinámica, ensayo universal de resistencia de materiales, túnel de viento hidrodinámico y tornos CNC automatizados.
+      </p>
+    </div>
+    <div class="pt-4 border-t-2 border-black flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-xs font-bold text-black">
+        <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">3 Talleres Físicos</span>
+      </div>
+      <span class="inline-flex items-center gap-1 text-xs font-black text-black group-hover:translate-x-1 transition-transform uppercase tracking-wider">
+        Ingresar
+        <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- Tarjeta 3: Electrónica -->
+  <div class="bg-white border-2 border-black rounded-xl p-6 flex flex-col justify-between cursor-pointer hover:bg-neutral-50 transition-colors group">
+    <div>
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-11 h-11 p-2.5 rounded-lg bg-white border border-black text-black flex items-center justify-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-bold rounded bg-white text-black border border-black uppercase tracking-wider">
+          Facultad de Ingeniería
+        </span>
+      </div>
+      <h2 class="text-xl font-extrabold text-black mb-2">
+        Ingeniería Electrónica
+      </h2>
+      <p class="text-black text-sm leading-relaxed mb-4 font-normal">
+        Salas de alta tensión y potencia, osciloscopios digitales con telemetría, banco de microondas, radiofrecuencia y sensórica.
+      </p>
+    </div>
+    <div class="pt-4 border-t-2 border-black flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-xs font-bold text-black">
+        <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">3 Laboratorios</span>
+      </div>
+      <span class="inline-flex items-center gap-1 text-xs font-black text-black group-hover:translate-x-1 transition-transform uppercase tracking-wider">
+        Ingresar
+        <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- Tarjeta 4: Biología & Microbiología -->
+  <div class="bg-white border-2 border-black rounded-xl p-6 flex flex-col justify-between cursor-pointer hover:bg-neutral-50 transition-colors group">
+    <div>
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-11 h-11 p-2.5 rounded-lg bg-white border border-black text-black flex items-center justify-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+          </svg>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-bold rounded bg-white text-black border border-black uppercase tracking-wider">
+          Ciencias Naturales
+        </span>
+      </div>
+      <h2 class="text-xl font-extrabold text-black mb-2">
+        Biología &amp; Microbiología
+      </h2>
+      <p class="text-black text-sm leading-relaxed mb-4 font-normal">
+        Microscopía de campo oscuro y contraste de fases, biorreactores automatizados, cultivo celular y bioensayos ambientales.
+      </p>
+    </div>
+    <div class="pt-4 border-t-2 border-black flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-xs font-bold text-black">
+        <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">4 Laboratorios Húmedos</span>
+      </div>
+      <span class="inline-flex items-center gap-1 text-xs font-black text-black group-hover:translate-x-1 transition-transform uppercase tracking-wider">
+        Ingresar
+        <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- Tarjeta 5: Ingeniería Industrial -->
+  <div class="bg-white border-2 border-black rounded-xl p-6 flex flex-col justify-between cursor-pointer hover:bg-neutral-50 transition-colors group">
+    <div>
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-11 h-11 p-2.5 rounded-lg bg-white border border-black text-black flex items-center justify-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-bold rounded bg-white text-black border border-black uppercase tracking-wider">
+          Facultad de Ingeniería
+        </span>
+      </div>
+      <h2 class="text-xl font-extrabold text-black mb-2">
+        Ingeniería Industrial
+      </h2>
+      <p class="text-black text-sm leading-relaxed mb-4 font-normal">
+        Línea piloto de ensamble manufacturero, laboratorio de ergonomía y estudio del trabajo, ruteo logístico y simulación industrial.
+      </p>
+    </div>
+    <div class="pt-4 border-t-2 border-black flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-xs font-bold text-black">
+        <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">2 Plantas Piloto</span>
+      </div>
+      <span class="inline-flex items-center gap-1 text-xs font-black text-black group-hover:translate-x-1 transition-transform uppercase tracking-wider">
+        Ingresar
+        <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- Tarjeta 6: Física & Óptica -->
+  <div class="bg-white border-2 border-black rounded-xl p-6 flex flex-col justify-between cursor-pointer hover:bg-neutral-50 transition-colors group">
+    <div>
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-11 h-11 p-2.5 rounded-lg bg-white border border-black text-black flex items-center justify-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+          </svg>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-bold rounded bg-white text-black border border-black uppercase tracking-wider">
+          Ciencias Básicas
+        </span>
+      </div>
+      <h2 class="text-xl font-extrabold text-black mb-2">
+        Física &amp; Óptica Experimental
+      </h2>
+      <p class="text-black text-sm leading-relaxed mb-4 font-normal">
+        Bancos de interferometría láser, difracción cuántica, mecánica ondulatoria y espectrometría de emisión para fundamentación científica.
+      </p>
+    </div>
+    <div class="pt-4 border-t-2 border-black flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-xs font-bold text-black">
+        <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">2 Laboratorios</span>
+      </div>
+      <span class="inline-flex items-center gap-1 text-xs font-black text-black group-hover:translate-x-1 transition-transform uppercase tracking-wider">
+        Ingresar
+        <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+</div></div>
+
+  <!-- Script ligero para las partículas en canvas (sin dependencias pesadas) -->
+  <script>
+    (function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let particles = [];
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      const particleCount = Math.min(window.innerWidth < 768 ? 24 : 48, 50);
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.size = Math.random() * 2.5 + 1;
+          this.speedX = (Math.random() - 0.5) * 0.45;
+          this.speedY = (Math.random() - 0.5) * 0.45;
+          this.alpha = Math.random() * 0.45 + 0.15;
+          this.color = Math.random() > 0.4 ? 'rgba(14, 116, 144,' : 'rgba(255, 255, 255,';
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x < 0 || this.x > width) this.speedX *= -1;
+          if (this.y < 0 || this.y > height) this.speedY *= -1;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color + this.alpha + ')';
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Conectar puntos cercanos con líneas muy tenues
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(255, 255, 255, ${0.18 * (1 - dist / 110)})`;
+              ctx.lineWidth = 0.75;
+              ctx.stroke();
+            }
+          }
+        }
+
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+  </script>
+
+
+
+</body></html>

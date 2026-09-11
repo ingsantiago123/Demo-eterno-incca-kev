@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="es" style="background-color: #ffffff !important; color: #000000 !important; opacity: 1 !important;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Laboratorios Vivos - Selección de Carrera | U.INCCA</title>
+<!-- Google Fonts: Space Mono & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"Space Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      opacity: 1 !important;
+      min-height: 100vh;
+      font-family: 'Space Mono', monospace, sans-serif;
+      margin: 0;
+    }
+    .wireframe-btn {
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .wireframe-btn:hover {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+    .wireframe-card {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .wireframe-card:hover {
+      box-shadow: 4px 4px 0px #000000;
+      transform: translate(-2px, -2px);
+    }
+  </style>
+</head>
+<body class="bg-white text-black min-h-screen p-6 md:p-10 flex flex-col justify-between" style="background-color: #ffffff !important; color: #000000 !important; opacity: 1 !important; min-height: 100vh; padding: 2.5rem; font-family: 'Space Mono', monospace, sans-serif;">
+<div class="max-w-7xl mx-auto w-full">
+<!-- Barra Superior: Navegación de retorno -->
+<div class="w-full mb-8 flex flex-wrap items-center justify-between gap-4 border-b-2 border-black pb-4">
+<a class="wireframe-btn inline-flex items-center gap-2 px-4 py-2 border-2 border-black text-black bg-white text-xs font-bold tracking-wider uppercase font-mono" href="#">
+<i class="fa-solid fa-arrow-left"></i>
+<span>[ ← VOLVER A INICIO ]</span>
+</a>
+<div class="text-xs font-bold uppercase tracking-wider font-mono bg-black text-white px-3 py-1">
+        SISTEMA DE ARCHIVO TÉCNICO · U.INCCA
+      </div>
+</div>
+
+<!-- Encabezado Principal y Ficha de Métricas -->
+<header class="mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b-2 border-black pb-8">
+<div class="max-w-3xl">
+<div class="inline-block border-2 border-black px-3 py-1 text-xs font-bold uppercase tracking-wider mb-3 bg-white">
+          [ VIDEOTECA DE PRÁCTICAS · LABORATORIOS VIVOS ]
+        </div>
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight mb-3">
+          Laboratorios Vivos | Selección de Carrera
+        </h1>
+<p class="font-sans text-neutral-800 text-sm sm:text-base leading-relaxed max-w-2xl">
+          Selecciona una facultad o programa académico para explorar las grabaciones de prácticas y procedimientos de laboratorio ejecutados en la U.INCCA.
+        </p>
+</div>
+<!-- Tarjeta wireframe de Métricas -->
+<div class="border-2 border-black p-4 bg-white self-start lg:self-auto min-w-[280px]">
+<div class="text-[10px] uppercase font-bold tracking-wider text-neutral-600 mb-1">MÉTRICA DEL REPOSITORIO</div>
+<div class="text-xs sm:text-sm font-bold tracking-tight text-black flex items-center gap-2">
+<i class="fa-solid fa-database"></i>
+<span>45 VIDEOS EN TOTAL | 6 PROGRAMAS ACADÉMICOS</span>
+</div>
+<div class="text-[10px] text-neutral-600 mt-2 font-mono">ACTUALIZACIÓN SEMESTRAL ACTIVA</div>
+</div>
+</header>
+<!-- Cuadrícula de 6 Tarjetas de Carreras -->
+<main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+<!-- 1: Ingeniería de Sistemas -->
+<div class="wireframe-card border-2 border-black bg-white p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="border border-black text-[11px] font-bold px-2.5 py-0.5 uppercase bg-white">FACULTAD DE INGENIERÍA</span>
+<span class="text-xs font-bold font-mono">01</span>
+</div>
+<div class="w-10 h-10 border-2 border-black flex items-center justify-center text-black mb-4">
+<i class="fa-solid fa-microchip text-lg"></i>
+</div>
+<h2 class="text-xl font-bold text-black mb-2 leading-snug">Ingeniería de Sistemas</h2>
+<p class="font-sans text-xs text-neutral-700 leading-relaxed mb-6">
+            Redes, Embebidos, Criptografía, Algoritmos computacionales de alto rendimiento y telemetría distribuida.
+          </p>
+</div>
+<div class="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+<div class="text-xs font-bold font-mono flex items-center gap-1.5">
+<i class="fa-solid fa-circle-play text-xs"></i>
+<span>14 videos grabados</span>
+</div>
+<a class="wireframe-btn inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-bold uppercase bg-white" href="#">
+<span>[ Ver Prácticas → ]</span>
+</a>
+</div>
+</div>
+<!-- 2: Ingeniería Industrial -->
+<div class="wireframe-card border-2 border-black bg-white p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="border border-black text-[11px] font-bold px-2.5 py-0.5 uppercase bg-white">FACULTAD DE INGENIERÍA</span>
+<span class="text-xs font-bold font-mono">02</span>
+</div>
+<div class="w-10 h-10 border-2 border-black flex items-center justify-center text-black mb-4">
+<i class="fa-solid fa-industry text-lg"></i>
+</div>
+<h2 class="text-xl font-bold text-black mb-2 leading-snug">Ingeniería Industrial</h2>
+<p class="font-sans text-xs text-neutral-700 leading-relaxed mb-6">
+            Procesos, Manufactura, Ergonomía, Simulación de líneas de ensamble, logística de operaciones y control de calidad.
+          </p>
+</div>
+<div class="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+<div class="text-xs font-bold font-mono flex items-center gap-1.5">
+<i class="fa-solid fa-circle-play text-xs"></i>
+<span>8 videos grabados</span>
+</div>
+<a class="wireframe-btn inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-bold uppercase bg-white" href="#">
+<span>[ Ver Prácticas → ]</span>
+</a>
+</div>
+</div>
+<!-- 3: Ingeniería de Alimentos -->
+<div class="wireframe-card border-2 border-black bg-white p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="border border-black text-[11px] font-bold px-2.5 py-0.5 uppercase bg-white">CIENCIAS APLICADAS</span>
+<span class="text-xs font-bold font-mono">03</span>
+</div>
+<div class="w-10 h-10 border-2 border-black flex items-center justify-center text-black mb-4">
+<i class="fa-solid fa-flask-vial text-lg"></i>
+</div>
+<h2 class="text-xl font-bold text-black mb-2 leading-snug">Ingeniería de Alimentos</h2>
+<p class="font-sans text-xs text-neutral-700 leading-relaxed mb-6">
+            Microbiología, Análisis Sensorial, Conservación de alimentos, bioprocesos agroindustriales y empaque activo.
+          </p>
+</div>
+<div class="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+<div class="text-xs font-bold font-mono flex items-center gap-1.5">
+<i class="fa-solid fa-circle-play text-xs"></i>
+<span>7 videos grabados</span>
+</div>
+<a class="wireframe-btn inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-bold uppercase bg-white" href="#">
+<span>[ Ver Prácticas → ]</span>
+</a>
+</div>
+</div>
+<!-- 4: Biología & Ciencias Ambientales -->
+<div class="wireframe-card border-2 border-black bg-white p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="border border-black text-[11px] font-bold px-2.5 py-0.5 uppercase bg-white">FACULTAD DE CIENCIAS</span>
+<span class="text-xs font-bold font-mono">04</span>
+</div>
+<div class="w-10 h-10 border-2 border-black flex items-center justify-center text-black mb-4">
+<i class="fa-solid fa-dna text-lg"></i>
+</div>
+<h2 class="text-xl font-bold text-black mb-2 leading-snug">Biología &amp; Ciencias Ambientales</h2>
+<p class="font-sans text-xs text-neutral-700 leading-relaxed mb-6">
+            Biología Celular, Botánica, Análisis de Aguas, microscopía de muestras vivas y monitoreo de cuencas hidrográficas.
+          </p>
+</div>
+<div class="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+<div class="text-xs font-bold font-mono flex items-center gap-1.5">
+<i class="fa-solid fa-circle-play text-xs"></i>
+<span>9 videos grabados</span>
+</div>
+<a class="wireframe-btn inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-bold uppercase bg-white" href="#">
+<span>[ Ver Prácticas → ]</span>
+</a>
+</div>
+</div>
+<!-- 5: Electrónica & Telecomunicaciones -->
+<div class="wireframe-card border-2 border-black bg-white p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="border border-black text-[11px] font-bold px-2.5 py-0.5 uppercase bg-white">FACULTAD DE INGENIERÍA</span>
+<span class="text-xs font-bold font-mono">05</span>
+</div>
+<div class="w-10 h-10 border-2 border-black flex items-center justify-center text-black mb-4">
+<i class="fa-solid fa-tower-broadcast text-lg"></i>
+</div>
+<h2 class="text-xl font-bold text-black mb-2 leading-snug">Electrónica &amp; Telecomunicaciones</h2>
+<p class="font-sans text-xs text-neutral-700 leading-relaxed mb-6">
+            Circuitos, Radiofrecuencia, DSP, Fibra Óptica, modulación digital, antenas e instrumentación con osciloscopio.
+          </p>
+</div>
+<div class="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+<div class="text-xs font-bold font-mono flex items-center gap-1.5">
+<i class="fa-solid fa-circle-play text-xs"></i>
+<span>12 videos grabados</span>
+</div>
+<a class="wireframe-btn inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-bold uppercase bg-white" href="#">
+<span>[ Ver Prácticas → ]</span>
+</a>
+</div>
+</div>
+<!-- 6: Química Industrial & Farmacia -->
+<div class="wireframe-card border-2 border-black bg-white p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="border border-black text-[11px] font-bold px-2.5 py-0.5 uppercase bg-white">FACULTAD DE CIENCIAS</span>
+<span class="text-xs font-bold font-mono">06</span>
+</div>
+<div class="w-10 h-10 border-2 border-black flex items-center justify-center text-black mb-4">
+<i class="fa-solid fa-atom text-lg"></i>
+</div>
+<h2 class="text-xl font-bold text-black mb-2 leading-snug">Química Industrial &amp; Farmacia</h2>
+<p class="font-sans text-xs text-neutral-700 leading-relaxed mb-6">
+            Cromatografía, Síntesis Orgánica, Control de Calidad analítico, reactores químicos y farmacopea experimental.
+          </p>
+</div>
+<div class="pt-4 border-t-2 border-black flex items-center justify-between gap-2">
+<div class="text-xs font-bold font-mono flex items-center gap-1.5">
+<i class="fa-solid fa-circle-play text-xs"></i>
+<span>8 videos grabados</span>
+</div>
+<a class="wireframe-btn inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-bold uppercase bg-white" href="#">
+<span>[ Ver Prácticas → ]</span>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Pie de página Institucional -->
+<footer class="w-full max-w-7xl mx-auto border-t-2 border-black pt-6 pb-2 text-xs flex flex-wrap items-center justify-between gap-4 font-mono">
+<div class="flex items-center gap-2">
+<i class="fa-solid fa-university"></i>
+<span>UNIVERSIDAD INCCA DE COLOMBIA · SISTEMA DE LABORATORIOS VIVOS</span>
+</div>
+<div class="flex items-center gap-4">
+<span>ESTRUCTURA WIREFRAME MONOCROMÁTICA</span>
+<span class="border-l-2 border-black pl-4">MODO: ESTRICTO (#000000 / #FFFFFF)</span>
+</div>
+</footer>
+</body></html>

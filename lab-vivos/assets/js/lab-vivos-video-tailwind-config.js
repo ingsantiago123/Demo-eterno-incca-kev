@@ -1,0 +1,106 @@
+// Configuración de Tailwind (vía CDN) para lab-vivos-video.html. Debe
+// cargarse DESPUÉS del <script src="https://cdn.tailwindcss.com"> y ANTES
+// de cualquier contenido que dependa de estas utilidades personalizadas.
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-secondary-container": "#ffec9f",
+        "tertiary": "#a8c8ff",
+        "on-secondary-fixed": "#211b00",
+        "on-error": "#690005",
+        "primary-container": "#0b349d",
+        "primary-fixed": "#dce1ff",
+        "surface-dim": "#060e3a",
+        "on-primary-fixed": "#001551",
+        "on-primary-container": "#90a6ff",
+        "on-primary": "#002681",
+        "on-error-container": "#ffdad6",
+        "surface-container": "#141c46",
+        "inverse-primary": "#3856be",
+        "tertiary-fixed-dim": "#a8c8ff",
+        "primary": "#b7c4ff",
+        "secondary": "#ddc65d",
+        "on-background": "#dee0ff",
+        "background": "#060e3a",
+        "tertiary-fixed": "#d5e3ff",
+        "secondary-fixed-dim": "#ddc65d",
+        "surface-variant": "#2a325d",
+        "on-surface-variant": "#c4c5d5",
+        "surface-container-low": "#0f1742",
+        "on-surface": "#dee0ff",
+        "tertiary-container": "#003f7c",
+        "on-secondary": "#393000",
+        "inverse-on-surface": "#252d58",
+        "surface-container-high": "#1f2751",
+        "outline-variant": "#444653",
+        "primary-fixed-dim": "#b7c4ff",
+        "on-tertiary-fixed-variant": "#00468a",
+        "inverse-surface": "#dee0ff",
+        "surface-container-highest": "#2a325d",
+        "on-tertiary-container": "#76acff",
+        "on-secondary-fixed-variant": "#534600",
+        "secondary-fixed": "#fbe276",
+        "on-tertiary-fixed": "#001b3c",
+        "surface-bright": "#2e3662",
+        "error-container": "#93000a",
+        "error": "#ffb4ab",
+        "outline": "#8e909e",
+        "surface": "#060e3a",
+        "secondary-container": "#7c6a00",
+        "surface-container-lowest": "#010835",
+        "surface-tint": "#b7c4ff",
+        "on-primary-fixed-variant": "#193da5",
+        "on-tertiary": "#003061"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "gutter-desktop": "1.5rem",
+        "space-lg": "1.5rem",
+        "container-max": "80rem",
+        "space-2xs": "0.25rem",
+        "space-xl": "2rem",
+        "space-md": "1rem",
+        "space-2xl": "3rem",
+        "space-sm": "0.75rem",
+        "space-3xl": "4rem",
+        "space-xs": "0.5rem",
+        "gutter-mobile": "1rem"
+      },
+      "fontFamily": {
+        "headline-sm": ["Outfit"],
+        "body-sm": ["Roboto Flex"],
+        "headline-lg": ["Outfit"],
+        "display-hero": ["Outfit"],
+        "eyebrow-caps": ["Outfit"],
+        "body-lg": ["Roboto Flex"],
+        "label-sm": ["Outfit"],
+        "label-md": ["Outfit"],
+        "display-hero-mobile": ["Outfit"],
+        "body-md": ["Roboto Flex"],
+        "headline-lg-mobile": ["Outfit"],
+        "headline-md": ["Outfit"]
+      },
+      "fontSize": {
+        "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+        "body-sm": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+        "headline-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+        "display-hero": ["3.5rem", { "lineHeight": "4rem", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+        "eyebrow-caps": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.15em", "fontWeight": "700" }],
+        "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+        "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.03em", "fontWeight": "600" }],
+        "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+        "display-hero-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+        "body-md": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+        "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+        "headline-md": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+      }
+    }
+  }
+};

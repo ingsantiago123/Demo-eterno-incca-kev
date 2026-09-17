@@ -1,0 +1,86 @@
+/* Estilos propios de index.html (landing principal). El resto del diseño lo
+   resuelve Tailwind (via CDN, configurado en assets/js/index-tailwind-config.js). */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Isometric 3D Grid Canvas & Plane */
+.iso-grid-bg {
+  background-size: 44px 44px;
+  background-image:
+    linear-gradient(to right, rgba(56, 86, 190, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 86, 190, 0.08) 1px, transparent 1px);
+  transform: perspective(1000px) rotateX(42deg) scale(1.4);
+  transform-origin: 50% 0%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 85%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 85%);
+}
+
+/* 3D tilt card container */
+.card-perspective {
+  perspective: 1200px;
+}
+
+.tilt-card {
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease, border-color 0.25s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Neon edge gradient animation */
+.neon-border-live {
+  box-shadow: 0 10px 30px -8px rgba(0, 116, 220, 0.25);
+}
+.neon-border-live:hover {
+  box-shadow: 0 20px 45px -5px rgba(0, 116, 220, 0.45), 0 0 20px 2px rgba(144, 166, 255, 0.5);
+}
+
+.neon-border-amber {
+  box-shadow: 0 10px 30px -8px rgba(199, 169, 59, 0.25);
+}
+.neon-border-amber:hover {
+  box-shadow: 0 20px 45px -5px rgba(199, 169, 59, 0.45), 0 0 20px 2px rgba(255, 225, 123, 0.5);
+}
+
+.neon-border-deep {
+  box-shadow: 0 10px 30px -8px rgba(0, 32, 113, 0.22);
+}
+.neon-border-deep:hover {
+  box-shadow: 0 20px 45px -5px rgba(0, 32, 113, 0.4), 0 0 20px 2px rgba(56, 86, 190, 0.4);
+}
+
+/* Shimmer ripple on button */
+.shimmer-button {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: rotate(25deg);
+  transition: all 0.75s ease;
+}
+.shimmer-button:hover::after {
+  left: 130%;
+}
+
+/* Radar pulse */
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+.pulse-radar {
+  animation: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}

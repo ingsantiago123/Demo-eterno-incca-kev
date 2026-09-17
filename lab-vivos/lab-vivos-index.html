@@ -12,45 +12,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            mono: ['"Space Mono"', 'monospace'],
-            sans: ['Inter', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-<style>
-    * {
-      box-sizing: border-box;
-    }
-    html, body {
-      background-color: #ffffff !important;
-      color: #000000 !important;
-      opacity: 1 !important;
-      min-height: 100vh;
-      font-family: 'Space Mono', monospace, sans-serif;
-      margin: 0;
-    }
-    .wireframe-btn {
-      transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-    }
-    .wireframe-btn:hover {
-      background-color: #000000 !important;
-      color: #ffffff !important;
-    }
-    .wireframe-card {
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .wireframe-card:hover {
-      box-shadow: 4px 4px 0px #000000;
-      transform: translate(-2px, -2px);
-    }
-  </style>
+<script src="assets/js/lab-vivos-index-tailwind-config.js"></script>
+<link href="assets/css/lab-vivos-index-styles.css" rel="stylesheet"/>
 </head>
 <body class="bg-white text-black min-h-screen p-6 md:p-10 flex flex-col justify-between" style="background-color: #ffffff !important; color: #000000 !important; opacity: 1 !important; min-height: 100vh; padding: 2.5rem; font-family: 'Space Mono', monospace, sans-serif;">
 <div class="max-w-7xl mx-auto w-full">

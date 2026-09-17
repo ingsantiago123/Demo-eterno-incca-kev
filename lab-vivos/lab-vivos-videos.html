@@ -9,60 +9,8 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Outfit', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            oxford: '#091E42',
-            navytext: '#0F172A',
-            skyaction: '#0284C7',
-            skyhover: '#0EA5E9',
-            cyanlight: '#38BDF8',
-            cyanbg: '#E0F2FE',
-            borderlight: '#BAE6FD'
-          }
-        }
-      }
-    }
-  </script>
-<style>
-    body {
-      background-color: #F8FAFC;
-      min-height: 100vh;
-    }
-    .grid-pattern {
-      background-image: radial-gradient(#0284C7 0.75px, transparent 0.75px);
-      background-size: 24px 24px;
-      opacity: 0.9;
-    }
-    .video-card {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      box-shadow: 0 4px 20px -2px rgba(14, 165, 233, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .video-card:hover {
-      border-color: #7DD3FC;
-      box-shadow: 0 16px 30px -6px rgba(2, 132, 199, 0.16), 0 6px 12px -2px rgba(15, 23, 42, 0.06);
-      transform: translateY(-3px);
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      height: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #F1F5F9;
-      border-radius: 9999px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #7DD3FC;
-      border-radius: 9999px;
-    }
-  </style>
+<script src="assets/js/lab-vivos-videos-tailwind-config.js"></script>
+<link href="assets/css/lab-vivos-videos-styles.css" rel="stylesheet"/>
 </head>
 <body class="text-slate-800 font-sans relative overflow-x-hidden antialiased pb-20" style="background-color: #ffffff !important; color: #000000 !important;">
 <!-- Glow effects de fondo sutiles -->

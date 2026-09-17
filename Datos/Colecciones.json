@@ -1,0 +1,29 @@
+[
+  {
+    "id": "externos",
+    "titulo": "Laboratorios Externos",
+    "descripcion": "Recursos académicos y tecnológicos de plataformas aliadas disponibles en Internet (PhET, CircuitVerse, GeoGebra y más), organizados por programa.",
+    "icono": "public",
+    "activo": true,
+    "href": "programa.html",
+    "fuenteConteo": "General-labs.json"
+  },
+  {
+    "id": "vivos",
+    "titulo": "Laboratorios Vivos",
+    "descripcion": "Prácticas de laboratorio grabadas en la universidad para consulta y estudio asincrónico.",
+    "icono": "videocam",
+    "activo": false,
+    "href": "",
+    "fuenteConteo": null
+  },
+  {
+    "id": "propios",
+    "titulo": "Laboratorios Propios",
+    "descripcion": "Aplicativos y espacios desarrollados directamente por la Universidad INCCA para sus estudiantes.",
+    "icono": "science",
+    "activo": false,
+    "href": "",
+    "fuenteConteo": null
+  }
+]

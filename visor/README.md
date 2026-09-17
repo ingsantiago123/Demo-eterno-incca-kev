@@ -69,11 +69,17 @@ al cargar, recurre a ese respaldo antes de rendirse, y lo vuelve a dejar en
 "Volver" desde `catalogo.html` hasta `programa.html`, o desde ahí hasta
 `index.html`, muestra de nuevo los datos reales — no el estado "sin datos".
 
-Por ahora, **Vivos** y **Propios** en la pantalla 1 son tarjetas
-"Próximamente" fijas (no hay ningún dato real para ellas todavía — ni en
-`General-labs.json` ni en ningún otro archivo). Cuando exista contenido real
-para esas colecciones, esa misma fuente única (`index.html` de la raíz)
-podría cargar también sus datos y pasarlos igual por `window.name`.
+**Vivos** ya tiene datos reales: cada laboratorio del array puede traer un
+campo `tipo` (`"externo"` | `"vivo"` | `"propio"`; sin `tipo` se trata como
+`"externo"`, retrocompatible con los 132 laboratorios históricos). Si hay al
+menos un ítem `tipo: "vivo"`, la tarjeta "Laboratorios Vivos" de la pantalla
+1 se activa sola — mismo `programa.html` (parametrizado por
+`?coleccion=vivo`), mismo `catalogo.html`, más una cuarta pantalla propia,
+`video.html`, para ver cada video individual (ver §"video.html" más abajo).
+
+**Propios** sigue siendo tarjeta "Próximamente" fija: el flag `tipo:
+"propio"` ya se reconoce en los datos, pero todavía no tiene ninguna
+pantalla que lo consuma.
 
 ```
 laboratorio-lading/
@@ -87,16 +93,19 @@ laboratorio-lading/
     ├── index.html               — PANTALLA 1: elegir colección (solo window.name)
     ├── programa.html             — PANTALLA 2: elegir programa (solo window.name)
     ├── catalogo.html             — PANTALLA 3: el visor puro (solo window.name)
+    ├── video.html                — PANTALLA 4: un video 'vivo' individual (solo window.name)
     ├── assets/
     │   ├── css/
-    │   │   ├── styles.css          — CSS a mano, compartido por index.html y catalogo.html
+    │   │   ├── styles.css          — CSS a mano, compartido por index/catalogo/video.html
     │   │   └── programa-styles.css — estilos propios de programa.html (Tailwind + este CSS)
     │   └── js/
     │       ├── index-main.js       — lógica de la pantalla 1
-    │       ├── programa-main.js    — lógica de la pantalla 2
-    │       └── main.js             — lógica de la pantalla 3: leerEntrada → merge → dispatch → render → hidratar
+    │       ├── programa-main.js    — lógica de la pantalla 2 (Externos y Vivos, por ?coleccion=)
+    │       ├── main.js             — lógica de la pantalla 3: leerEntrada → merge → dispatch → render → hidratar
+    │       └── video-main.js       — lógica de la pantalla 4: un solo ítem 'vivo', embed de Drive
     ├── prueba.html                — banco de pruebas de LA CADENA COMPLETA: <iframe> a index.html
-    │                                con los 132 laboratorios reales en su name
+    │                                con los 132 laboratorios reales + ejemplos 'vivo' en su name
+    │                                (no se versiona — ver .gitignore)
     └── README.md                  — este archivo
 ```
 
@@ -135,8 +144,10 @@ Si abrís `catalogo.html` directo (sin pasar por ningún anfitrión),
 
 ### Contrato de datos
 
-Objeto raíz + `items[]`, cada ítem con `tipo: "laboratorio"` (único tipo
-soportado por ahora; cualquier otro se descarta en silencio):
+Objeto raíz + `items[]`, cada ítem con `tipo: "laboratorio"` o `tipo:
+"vivo"` (únicos dos tipos soportados hoy; cualquier otro se descarta en
+silencio). Debajo, el ejemplo con `"laboratorio"` — el de `"vivo"` está en
+su propia sección más abajo:
 
 ```jsonc
 {
@@ -193,6 +204,36 @@ soportado por ahora; cualquier otro se descarta en silencio):
 | `link` | `""` → botón "Abrir Recurso Original" oculto | URL externa, se abre en pestaña nueva |
 | `imagen` | `""` → esquema de categoría (ícono + nombre) | Si falla la carga de la imagen, cae automáticamente al esquema |
 
+#### Campos de un ítem `tipo: "vivo"`
+
+No comparte ningún campo de contenido con `"laboratorio"` (representan
+cosas distintas — un recurso externo vs. una práctica grabada). Al hacer
+clic en una tarjeta `vivo`, `catalogo.html` **no abre el modal**: arma un
+payload de un solo ítem, lo deja en `window.name` (respaldando antes el
+catálogo actual en `sessionStorage` para poder restaurarlo al volver) y
+navega a `video.html`, que lo renderiza en su propia página completa.
+
+| Campo | Default si falta | Notas |
+|---|---|---|
+| `item` | posición en el array | Se muestra como "Práctica N" / "#N" |
+| `nombre` | `"Laboratorio en vivo sin nombre"` | Título de la tarjeta y de `video.html` |
+| `programa` | `""` | Un solo programa por ítem (no una lista separada por comas) |
+| `materia` | `""` | Se usa también como categoría para la barra de filtros |
+| `transversalidad` | `""` | `"Transversal"` activa el badge sólido; cualquier otro valor no vacío se muestra tal cual |
+| `descripcion` | `"Descripción no disponible."` | Texto completo en la tarjeta (recortado) y en `video.html` (completo) |
+| `videoUrl` | `""` → "Video no disponible" | Link de Drive "para compartir"; se convierte a `.../preview` para el `<iframe>` (ver `toEmbedUrlDrive()` en `main.js`/`video-main.js`) |
+| `docenteFuente` | `"Fuente no especificada"` | Crédito de la grabación |
+
+### `video.html` — pantalla 4 (un video individual)
+
+Mismo espíritu que `catalogo.html`: **cero `fetch()`**, función pura de lo
+que reciba por `window.name` — pero acá el anfitrión (siempre
+`catalogo.html`) manda **un solo ítem suelto**, no `{ items: [...] }`.
+Sin datos (o con la forma equivocada) muestra el estado "sin datos", nunca
+un error. El link "Volver al catálogo" restaura primero el respaldo de
+`sessionStorage` (la clave `visorCatalogoRespaldo`) y recién ahí navega, así
+`catalogo.html` recupera su propio catálogo en vez de caer al estado vacío.
+
 ### Probarla (sin pasar por el index de la raíz)
 
 `prueba.html` ya no apunta a `catalogo.html` en aislado: apunta a
@@ -229,8 +270,17 @@ esta pantalla, el mismo array sigue disponible cuando se llega a
 
 CERO `fetch()`. Sigue leyendo el mismo `window.name`. La lista de programas
 **no sale de `Datos/Programas.json`** (ese archivo no se usa en la cadena
-real) — se deriva recorriendo el campo `"Programa(s)"` de cada laboratorio
-del array y sacando los valores únicos (confirmado: da exactamente los
-mismos 14 programas que tenía `Programas.json`). Recién al elegir un
+real) — se deriva recorriendo el campo `"Programa(s)"` (laboratorios sin
+`tipo`, legacy) o `"programa"` (ítems con `tipo`) de cada laboratorio del
+array y sacando los valores únicos (confirmado: da exactamente los mismos
+14 programas que tenía `Programas.json` para Externos). Recién al elegir un
 programa arma el payload del visor (contrato de arriba) y ahí sí reemplaza
 `window.name` antes de navegar a `catalogo.html`.
+
+Esta misma pantalla sirve tanto a Externos como a Vivos: la tarjeta "Vivos"
+de la pantalla 1 arma su link `Ingresar` como `programa.html?coleccion=vivo`.
+Con ese parámetro, `programa.html` filtra el array por `tipo: "vivo"` en vez
+de `tipo: "externo"`, cambia sus textos/branding (título, badges, ícono) y
+arma para `catalogo.html` items `tipo: "vivo"` en vez de `tipo:
+"laboratorio"`. El código de `catalogo.html` no cambia en absoluto entre uno
+y otro caso — es el mismo despacho por tipo de siempre.
